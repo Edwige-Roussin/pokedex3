@@ -1,18 +1,27 @@
 import React from 'react';
 
-interface PokemonCardProps {
-  imageUrl: string;
+interface Pokemon {
   name: string;
+  imgSrc?: string; 
 }
 
-const PokemonCard = ({ imageUrl, name }: PokemonCardProps) => {
+interface PokemonCardProps {
+  pokemonList: Pokemon[];
+}
+
+const PokemonCard = ({ pokemonList }: PokemonCardProps) => {
+  const pokemon = pokemonList[0];
+
   return (
     <figure>
-      <img src={imageUrl} alt={name} />
-      <figcaption>{name}</figcaption>
+      {pokemon.imgSrc ? (
+        <img src={pokemon.imgSrc} alt={pokemon.name} />
+      ) : (
+        <p>???</p>
+      )}
+      <figcaption>{pokemon.name}</figcaption>
     </figure>
   );
 };
 
 export default PokemonCard;
-
